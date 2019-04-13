@@ -1,25 +1,23 @@
 package projecte;
-
-import java.util.Scanner;
 import java.io.*;
+import java.util.Scanner;
 
 
-public class Raid0 {
-    
-    public static String R0 [] = new String [5];
+public class Raid1 {
+    public static String R1 [] = new String [5];
     public Scanner teclado = new Scanner(System.in);
     //Carga la informacion al arreglo al inicio del programa
     public void Load(){
         int i=0;
         try{
             
-            FileInputStream archivo = new FileInputStream("C:/R0DX.txt");
+            FileInputStream archivo = new FileInputStream("C:/R1D0.txt");
             DataInputStream entrada = new DataInputStream(archivo);
             BufferedReader buffer = new BufferedReader(new InputStreamReader(entrada));   
             String strLinea;          
             while ((strLinea = buffer.readLine()) != null && i<5){               
                 //se reemplazan todos los espacios vacios del arreglo Tik por los valores leidos del archivo "Ticket"     
-                     R0[i] = strLinea;  
+                     R1[i] = strLinea;  
                      i++;
                      
             }
@@ -37,10 +35,10 @@ public class Raid0 {
     //Incializa el arreglo
     public void Init(){
         for(int i=0; i<5; i++){
-            R0[i] = "";
+            R1[i] = "";
         }
     }
-    //Menu de R0
+    //Menu de R1
     public void Menu(){
         int opcion = 1;
         while (opcion != 0) {
@@ -84,34 +82,24 @@ public class Raid0 {
     }
     //Ingreso de informacion de RAID0 y su procedimiento
     public void Info(){
- 
+        //Datos para informacion de RAID 1 y Guardado
          
-       //Contador (Pendiente) para poder seleccionar las posiciones del arreglo y hacer la comparacion
-       int K = 0;
-       String bin;       
-        //Ingreso informacion R0
+         String bin;             
          for (int i=0 ; i<5;i++){
-             if(R0[i].equals("")){
+             if(R1[i].equals("")){
              System.out.println("Ingrese los datos");
              bin = teclado.next();
              Integer.parseInt(bin);       
-             R0[i] = K++ + bin;
-             
-             }             
+             R1[i] = bin; 
+             SAVE_RAID_1();
+             SAVE_RAID_1_1();
+          
+             }
          }
-         SAVE_RAID_0_X();
-            /*if(New[K] ?? comparar los valores i dividirlos en 2){
-         SAVE_RAID_0;
-         }else{
-         SAVE_RAID_0_1
-         }
-             
-         */
-     }
-    //Guardado R0
-    public void SAVE_RAID_0(){
-         //Metodo guardar para RAID 0
-         File archivo = new File("C:/R0D0.txt");
+    }
+    //Guardado R1
+    public void SAVE_RAID_1(){
+        File archivo = new File("C:/R1D0.txt");
         
         
         try{
@@ -120,50 +108,7 @@ public class Raid0 {
             PrintWriter impresor = new PrintWriter(buffer);
             
             for(int i=0; i<5; i++){
-                impresor.write(R0[i]);
-                impresor.println();
-            }
-            
-            impresor.close();
-            buffer.close();
-        }catch (Exception e){ 
-            System.err.println("Ocurrio un error: " + e.getMessage());
-        }
-             
-     }
-    public void SAVE_RAID_0_1(){
-         //Metodo guardar para RAID 0
-         File archivo = new File("C:/R0D1.txt");
-        
-        
-        try{
-            FileWriter escritor = new FileWriter(archivo, true);
-            BufferedWriter buffer = new BufferedWriter(escritor);
-            PrintWriter impresor = new PrintWriter(buffer);
-            
-            for(int i=0; i<5; i++){
-                impresor.write(R0[i]);
-                impresor.println();
-            }
-            
-            impresor.close();
-            buffer.close();
-        }catch (Exception e){ 
-            System.err.println("Ocurrio un error: " + e.getMessage());
-        }
-             
-     }
-    public void SAVE_RAID_0_X(){
-        File archivo = new File("C:/R0DX.txt");
-        
-        
-        try{
-            FileWriter escritor = new FileWriter(archivo);
-            BufferedWriter buffer = new BufferedWriter(escritor);
-            PrintWriter impresor = new PrintWriter(buffer);
-            
-            for(int i=0; i<5; i++){
-                impresor.write(R0[i]);
+                impresor.write(R1[i]);
                 impresor.println();
             }
             
@@ -172,12 +117,33 @@ public class Raid0 {
         }catch (Exception e){ 
             System.err.println("Ocurrio un error: " + e.getMessage());
         }       
+       
+    }
+    public void SAVE_RAID_1_1(){
+        File archivo = new File("C:/R1D1.txt");
+        
+        
+        try{
+            FileWriter escritor = new FileWriter(archivo, true);
+            BufferedWriter buffer = new BufferedWriter(escritor);
+            PrintWriter impresor = new PrintWriter(buffer);
+            
+            for(int i=0; i<5; i++){
+                impresor.write(R1[i]);
+                impresor.println();
+            }
+            
+            impresor.close();
+            buffer.close();
+        }catch (Exception e){ 
+            System.err.println("Ocurrio un error: " + e.getMessage());
+        }
         
     }
     //Visualizacion de archivos
     public void Show(){
         for (int i=0; i<5; i++){
-            System.out.println(R0[i]);
+            System.out.println(R1[i]);
         }
      }
     //Visualizacion de archivos 1 a 1
@@ -196,19 +162,19 @@ public class Raid0 {
                 
                 switch(opcion){
                     case 1:
-                        System.out.println(R0[0]);
+                        System.out.println(R1[0]);
                     break;
                     case 2:
-                        System.out.println(R0[1]);
+                        System.out.println(R1[1]);
                     break;
                     case 3:
-                        System.out.println(R0[2]);
+                        System.out.println(R1[2]);
                     break;
                     case 4:
-                        System.out.println(R0[3]);
+                        System.out.println(R1[3]);
                     break;
                     case 5:
-                        System.out.println(R0[4]);
+                        System.out.println(R1[4]);
                     break;
                     case 0:
                         i = 5;
@@ -235,22 +201,22 @@ public class Raid0 {
                 
                 switch (opcion){
                     case 1:
-                     R0[0] = "";  
+                     R1[0] = "";  
                     break;
                     case 2:
-                     R0[1] = "";
+                     R1[1] = "";
                     break;
                     case 3:
-                     R0[2] = "";
+                     R1[2] = "";
                     break;
                     case 4:
-                     R0[3] = ""; 
+                     R1[3] = ""; 
                     break;
                     case 5:
-                     R0[4] = "";   
+                     R1[4] = "";   
                     break;
                     case 6:
-                     R0[i] = "";   
+                     R1[i] = "";   
                     break;
                     case 0:
                         i=5;
@@ -260,5 +226,3 @@ public class Raid0 {
         }
     }
 }
-   
-

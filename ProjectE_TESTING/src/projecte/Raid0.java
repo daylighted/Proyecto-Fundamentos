@@ -49,6 +49,8 @@ public class Raid0 {
             System.out.println("3.Menu para Mostrar todos los datos");
             System.out.println("4.Menu para visualizar datos");
             System.out.println("5.Refrescar datos del Raid");
+            System.out.println("6.Simular Falla 1");
+            System.out.println("7.Simular Falla 2");
             System.out.println("0. Salir");
             System.out.print("Seleccione una opcion: ");
             opcion = teclado.nextInt();
@@ -78,6 +80,18 @@ public class Raid0 {
                 //Carga nuevamente los datos del arreglo
                 Load();
                 break;
+                //Fallas
+                case 6:
+                Falla_1();
+                break;
+                
+                case 7:
+                Falla_2();
+                break;
+                
+                case 8:
+                //Remplazar();
+                break;
             }
             
         }
@@ -90,16 +104,18 @@ public class Raid0 {
        int K = 0;
        String bin;       
         //Ingreso informacion R0
+        
          for (int i=0 ; i<5;i++){
              if(R0[i].equals("")){
              System.out.println("Ingrese los datos");
              bin = teclado.next();
              Integer.parseInt(bin);       
-             R0[i] = K++ + bin;
-             
-             }             
+             R0[i] = K++ + bin; 
+             }       
          }
          SAVE_RAID_0_X();
+         SAVE_RAID_0();
+         SAVE_RAID_0_1();
             /*if(New[K] ?? comparar los valores i dividirlos en 2){
          SAVE_RAID_0;
          }else{
@@ -115,7 +131,7 @@ public class Raid0 {
         
         
         try{
-            FileWriter escritor = new FileWriter(archivo, true);
+            FileWriter escritor = new FileWriter(archivo);
             BufferedWriter buffer = new BufferedWriter(escritor);
             PrintWriter impresor = new PrintWriter(buffer);
             
@@ -137,7 +153,7 @@ public class Raid0 {
         
         
         try{
-            FileWriter escritor = new FileWriter(archivo, true);
+            FileWriter escritor = new FileWriter(archivo);
             BufferedWriter buffer = new BufferedWriter(escritor);
             PrintWriter impresor = new PrintWriter(buffer);
             
@@ -158,7 +174,7 @@ public class Raid0 {
         
         
         try{
-            FileWriter escritor = new FileWriter(archivo);
+            FileWriter escritor = new FileWriter(archivo, true);
             BufferedWriter buffer = new BufferedWriter(escritor);
             PrintWriter impresor = new PrintWriter(buffer);
             
@@ -259,6 +275,67 @@ public class Raid0 {
             }
         }
     }
+    public void Fallas(){
+        int opcion = 1;
+        while (opcion != 0){
+            System.out.println("1.Falla D0");
+            System.out.println("2.Falla D1");
+            System.out.println("3.Reemplazar D0");
+            System.out.println("4.Reemplazar D1");
+            System.out.println("0.Salir");
+            
+            opcion = teclado.nextInt();
+            switch (opcion){
+                case 1:
+                    Falla_1();
+                break;
+                
+                case 2:
+                    Falla_2();
+                break;
+                case 3:
+                    Reemplazar_D0();
+                break;
+                case 4:
+                    Reemplazar_D1();
+                break;
+            }
+        }
+    }
+    public void Falla_1(){
+        File fichero = new File("C:/R0D0.txt");
+        EliminarFichero(fichero);
+        System.out.println("Fallo el Disco 0");
 }
+    public void Falla_2(){
+        File fichero = new File("C:/R0D1.txt");
+        EliminarFichero(fichero);
+        System.out.println("Fallo el Disco 1");
+
+}
+    public void Reemplazar_D0(){
+    }
+    public void Reemplazar_D1(){
+    }
+        
+    public static void EliminarFichero(File fichero) {
+
+    if (!fichero.exists()) {
+        System.out.println("El archivo data no existe.");
+    } else {
+        fichero.delete();
+        System.out.println("El archivo data fue eliminado.");
+    }
+
+}
+}
+    
+    
+    
+   
+
+
+  
+
    
 
