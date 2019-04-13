@@ -49,8 +49,7 @@ public class Raid0 {
             System.out.println("3.Menu para Mostrar todos los datos");
             System.out.println("4.Menu para visualizar datos");
             System.out.println("5.Refrescar datos del Raid");
-            System.out.println("6.Simular Falla 1");
-            System.out.println("7.Simular Falla 2");
+            System.out.println("6.Falla/Reemplazo");
             System.out.println("0. Salir");
             System.out.print("Seleccione una opcion: ");
             opcion = teclado.nextInt();
@@ -82,7 +81,7 @@ public class Raid0 {
                 break;
                 //Fallas
                 case 6:
-                Fallas();
+                Fallas_Reemplazo();
                 break;
                 
                 case 7:
@@ -275,7 +274,7 @@ public class Raid0 {
             }
         }
     }
-    public void Fallas(){
+    public void Fallas_Reemplazo(){
         int opcion = 1;
         while (opcion != 0){
             System.out.println("1.Falla D0");
@@ -314,8 +313,40 @@ public class Raid0 {
 
 }
     public void Reemplazar_D0(){
+        String path="C:/R0D0.txt";
+        try {
+            String contenido = "";
+            File file = new File(path);
+            // Si el archivo no existe es creado
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+            FileWriter fw = new FileWriter(file);
+            BufferedWriter bw = new BufferedWriter(fw);
+            bw.write(contenido);
+            bw.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println("El Disco "+path+" fue creado satisfactoriamente");
     }
     public void Reemplazar_D1(){
+        String path="C:/R0D1.txt";
+        try {
+            String contenido = "";
+            File file = new File(path);
+            // Si el archivo no existe es creado
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+            FileWriter fw = new FileWriter(file);
+            BufferedWriter bw = new BufferedWriter(fw);
+            bw.write(contenido);
+            bw.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println("El Disco "+path+" fue creado satisfactoriamente");
     }   
     public static void EliminarFichero(File fichero) {
 
