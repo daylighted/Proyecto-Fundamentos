@@ -27,7 +27,7 @@ public class Raid1 {
         }
         //Se muestran todos los valores que fueron cargados desde el archivo de texto al arreglo
           /*for(int c=0; c<5 ;c++){
-        System.out.println(R0[c]);
+        System.out.println(R1[c]);
         System.out.println("Se han cargado los siguientes datos");
        
    }*/
@@ -103,7 +103,7 @@ public class Raid1 {
         
         
         try{
-            FileWriter escritor = new FileWriter(archivo, true);
+            FileWriter escritor = new FileWriter(archivo);
             BufferedWriter buffer = new BufferedWriter(escritor);
             PrintWriter impresor = new PrintWriter(buffer);
             
@@ -124,7 +124,7 @@ public class Raid1 {
         
         
         try{
-            FileWriter escritor = new FileWriter(archivo, true);
+            FileWriter escritor = new FileWriter(archivo);
             BufferedWriter buffer = new BufferedWriter(escritor);
             PrintWriter impresor = new PrintWriter(buffer);
             
@@ -225,4 +225,56 @@ public class Raid1 {
             }
         }
     }
+    public void Fallas(){
+        int opcion = 1;
+        while (opcion != 0){
+            System.out.println("1.Falla D0");
+            System.out.println("2.Falla D1");
+            System.out.println("3.Reemplazar D0");
+            System.out.println("4.Reemplazar D1");
+            System.out.println("0.Salir");
+            
+            opcion = teclado.nextInt();
+            switch (opcion){
+                case 1:
+                    Falla_1();
+                break;
+                
+                case 2:
+                    Falla_2();
+                break;
+                case 3:
+                    Reemplazar_D0();
+                break;
+                case 4:
+                    Reemplazar_D1();
+                break;
+            }
+        }
+    }
+    public void Falla_1(){
+        File fichero = new File("C:/R1D0.txt");
+        EliminarFichero(fichero);
+        System.out.println("Fallo el Disco 0");
+}
+    public void Falla_2(){
+        File fichero = new File("C:/R1D1.txt");
+        EliminarFichero(fichero);
+        System.out.println("Fallo el Disco 1");
+
+}
+    public void Reemplazar_D0(){
+    }
+    public void Reemplazar_D1(){
+    }  
+    public static void EliminarFichero(File fichero) {
+
+    if (!fichero.exists()) {
+        System.out.println("El archivo data no existe.");
+    } else {
+        fichero.delete();
+        System.out.println("El archivo data fue eliminado.");
+    }
+
+}
 }

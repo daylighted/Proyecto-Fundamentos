@@ -82,15 +82,15 @@ public class Raid0 {
                 break;
                 //Fallas
                 case 6:
-                Falla_1();
+                Fallas();
                 break;
                 
                 case 7:
-                Falla_2();
+                
                 break;
                 
                 case 8:
-                //Remplazar();
+                
                 break;
             }
             
@@ -316,8 +316,7 @@ public class Raid0 {
     public void Reemplazar_D0(){
     }
     public void Reemplazar_D1(){
-    }
-        
+    }   
     public static void EliminarFichero(File fichero) {
 
     if (!fichero.exists()) {
