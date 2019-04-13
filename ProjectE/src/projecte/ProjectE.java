@@ -21,34 +21,32 @@ public class ProjectE {
             System.out.println("2.Raid 1");
             System.out.println("3.Raid 5");            
             //System.out.println("4. Reload"); (Pendiente)
-            System.out.println("0. Salir");
+            System.out.println("0.Salir");
             System.out.print("Seleccione una opcion: ");
             opcion = teclado.nextInt();
             
             switch (opcion){
                 case 1:
-                //Guarda la informacion simulando el RAID 0 (Data Striping)
-                R0.Info();
+                //Abre el Menu para RAID0 (Data Striping)
+                R0.Init();
+                R0.Load();
+                R0.Menu();
                 break;
                 
                 case 2:
                 //Guarda la informacion simulando el RAID 1 (Espejo)
+                R1.Init();
+                R1.Load();
                 R1.Info();
                 break;
                 
                 case 3:
-                //Guarda la informacion simulando el RAID 5 (Paridad)    
+                //Guarda la informacion simulando el RAID 5 (Paridad)
+                R1.Init();
+                R1.Load();
                 R5.Info();
                 break;
-                
-                case 4:
-                //Pendiente
-                break;
-                
-                case 5:
-                //Pendiente
-               
-                break;
+                             
             }
             
         }
